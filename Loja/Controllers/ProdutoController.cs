@@ -74,6 +74,22 @@ namespace Loja.Controllers
                 return NotFound();
         }
 
+        // GET: api/Produto/aleatorio
+        // fromQuery para requests get com objeto de argumento para pesquisa
+        [HttpGet("pesquisaADO")]
+        public ActionResult<List<ProdutoPesquisaDTO>> GetPesquisaADO([FromQuery]ProdutoParametrosPesquisaDTO parametros)
+        {
+            // criei outra DTO pois os parâmetros não são obrigatórios
+            var produto = _produtoService.pesquisaAdo(parametros).Result;
+
+            if (produto != null)
+            {
+                return Ok(produto);
+            }
+            else
+                return NotFound();
+        }
+
         // POST: api/Produto
         [HttpPost]
         public ActionResult<ProdutoDto> Post([FromBody]ProdutoDto value)

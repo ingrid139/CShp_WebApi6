@@ -110,9 +110,9 @@ namespace Loja.Controllers
             return Ok(retorno);
         }
 
-
-        [HttpPost("authToken")]
-        public async Task<ActionResult<TokenResponse>> AuthToken([FromBody]TokenDTO value)
+        // fromQuery para requests get com objeto de argumento para pesquisa
+        [HttpGet("getToken")]
+        public async Task<ActionResult<TokenResponse>> AuthToken([FromQuery]TokenDTO value)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);

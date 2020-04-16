@@ -54,10 +54,11 @@ namespace Loja
                 opt.Filters.Add(typeof(ErrorResponseFilter));
             }).SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
+            services.AddAutoMapper(typeof(Startup));
+
             services.AddDbContext<LojaContexto>();
             services.AddScoped<IClienteService, ClienteService>();
             services.AddScoped<IProdutoService, ProdutoService>();
-            services.AddAutoMapper(typeof(Startup));
             services.AddScoped<ICompraService, CompraService>();
             services.AddScoped<IPromocoesService, PromocoesService>();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();

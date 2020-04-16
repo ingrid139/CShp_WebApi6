@@ -49,6 +49,10 @@
               "target": "Package",
               "version": "[7.0.0, )"
             },
+            "Dapper": {
+              "target": "Package",
+              "version": "[2.0.30, )"
+            },
             "IdentityServer4": {
               "target": "Package",
               "version": "[2.5.3, )"

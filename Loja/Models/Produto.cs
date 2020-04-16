@@ -12,9 +12,9 @@ namespace Loja.Api.Models
         [Required]
         public int Id { get; set; }
 
-        [Column("Name")]
         [StringLength(100)]
         [Required]
+        [Column("Name")]
         public string Nome { get; set; }
 
         [Column("Categoria")]
