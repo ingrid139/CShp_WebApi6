@@ -90,6 +90,23 @@ namespace Loja.Controllers
                 return NotFound();
         }
 
+        [HttpGet("GetPorCategoriaOrdenada")]
+        public ActionResult<List<ProdutoDto>> GetListaOrdenada()
+        {
+            // criei outra DTO pois os parâmetros não são obrigatórios
+            var produtos = _produtoService.ListarProdutos();
+
+            if (produtos != null)
+            {
+                var produtosOrdenados = _produtoService.OrdenarPorCategoria(produtos.ToList());
+                return Ok(_mapper.Map<List<ProdutoDto>>(produtosOrdenados));
+            }
+            else
+                return NotFound();
+        }
+
+
+
         // POST: api/Produto
         [HttpPost]
         public ActionResult<ProdutoDto> Post([FromBody]ProdutoDto value)

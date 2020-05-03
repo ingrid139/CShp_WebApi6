@@ -2,6 +2,7 @@
 using Loja.Api.Models;
 using Loja.DTO;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Internal;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -35,6 +36,22 @@ namespace Loja.Services
         {
             //utilizar método Where
             return _context.Produtos.Where(x => x.Categoria == nome).ToList();
+        }
+
+        public List<Produto> OrdenarPorCategoria(List<Produto> produtos)
+        {
+            // definir ordenação
+            var ordenacao = produtos.GroupBy(x => x.Categoria)
+                                    .Select(group => new
+                                            {
+                                                Categoria = group.Key,
+                                                Quantidade = group.Count()
+                                            })
+                                    .OrderByDescending(x => x.Quantidade)
+                                    .ToList();
+            
+            // aplicar ordenação definida na lista desejada                                    
+            return produtos.OrderBy(x => ordenacao.Select(y => y.Categoria).IndexOf(x.Categoria)).ToList();
         }
 
         public Produto ProcurarAleatorio()

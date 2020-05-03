@@ -12,6 +12,7 @@ namespace Loja.Services
         Produto ProcurarPorId(int produtoId);
         Produto ProcurarAleatorio();
         Task<IEnumerable<ProdutoPesquisaDTO>> pesquisaAdo(ProdutoParametrosPesquisaDTO parametros);
+        List<Produto> OrdenarPorCategoria(List<Produto> produtos);
         Produto Salvar(Produto produto);
     }
 }
